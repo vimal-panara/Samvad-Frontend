@@ -1,0 +1,11 @@
+version: '3.8'
+services:
+  app:
+    image: node:22.5-bookworm
+    entrypoint:
+      - sleep
+      - infinity
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./:/app
