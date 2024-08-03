@@ -4,16 +4,21 @@ import { useState } from "react";
 import Button from "~/components/button"
 import Headers from "~/components/headers"
 
+interface RoomData {
+	room_id: string
+}
+
 function Room() {
 
 	const [roomId, setRoomId] = useState("")
 
 	const navigate = useNavigate();
 
-	const CreateNewRoom = () => {
-		const newRoomId = "123456"
-		console.log(newRoomId)
-		navigate(`/room/${newRoomId}`)
+	const CreateNewRoom = async () => {
+		const res = await fetch('http://localhost:8000/create');
+		const roomData: RoomData = await res.json()
+		console.log(roomData.room_id)
+		navigate(`/room/${roomData.room_id}`)
 	}
 
 	const JoinRoom = () => {
